@@ -587,6 +587,24 @@
     .main.tushaal-expanded #content-frame {
       min-height: calc(100dvh - var(--topbar-height) - 54px);
     }
+    .main.workspace-expanded {
+      padding: 0;
+      overflow: hidden;
+    }
+    .main.workspace-expanded .dashboard,
+    .main.workspace-expanded .content-frame-wrap {
+      height: calc(100dvh - var(--topbar-height));
+    }
+    .main.workspace-expanded .content-frame-wrap {
+      min-height: calc(100dvh - var(--topbar-height));
+      border-radius: 0;
+      border-left: 0;
+      border-right: 0;
+      box-shadow: none;
+    }
+    .main.workspace-expanded #content-frame {
+      min-height: calc(100dvh - var(--topbar-height) - 54px);
+    }
     .frame-titlebar {
       display: flex;
       align-items: center;
@@ -963,6 +981,18 @@
 
       <div class="sidebar-divider"></div>
 
+<div class="sidebar-item">
+        <a href="#" class="sidebar-link danger-link" id="toggle-alert" data-page-key="Ажлын бүртгэл">
+          <i class="fa fa-sitemap"></i> Ажлын бүртгэл
+        </a>
+      </div>
+
+      <div class="sidebar-item">
+        <a href="#" class="sidebar-link danger-link" id="toggle-alert" data-page-key="Хурлын тэмдэглэл">
+          <i class="fa fa-sitemap"></i> Хурлын тэмдэглэл
+        </a>
+      </div>
+
       <div class="sidebar-item">
         <a href="#" class="sidebar-link danger-link" id="toggle-alert" data-page-key="Менежментийн нэгдсэн тогтолцоо">
           <i class="fa fa-sitemap"></i> Менежментийн нэгдсэн тогтолцоо
@@ -1235,6 +1265,8 @@
     'Төлөвлөгөө / Сарын ажлын төлөвлөгөө': 'sariin.html',
     'Шийдвэр': 'shiidwer.html',
     'Үүрэг даалгавар': 'ita.html',
+    'Ажлын бүртгэл': 'ajliinBvrtgel.html',
+    'Хурлын тэмдэглэл': 'hural.html',
     'Менежментийн нэгдсэн тогтолцоо': 'anhaar.html',
     'Ажилтануудын мэдээлэл': 'ajiltan.html',
     'Суман шилжүүлгийн бүртгэл': 'sum.html',
@@ -1647,9 +1679,11 @@
     const main = document.querySelector('.main');
     const titleText = clickedElement.textContent.trim().replace(/\s+/g, ' ');
     const isTushaalPage = pageKey === 'Тушаал, стандарт' || pageKey === 'уулзварын зайн судалгаа';
+    const isWorkspacePage = pageKey === 'Ажлын бүртгэл' || pageKey === 'Хурлын тэмдэглэл';
 
     if (main) {
       main.classList.toggle('tushaal-expanded', isTushaalPage);
+      main.classList.toggle('workspace-expanded', isWorkspacePage);
     }
 
     frame.src = resolvePageSrc(pageKey, titleText);
